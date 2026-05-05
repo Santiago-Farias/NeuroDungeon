@@ -26,13 +26,18 @@ public class NeuroDungeon {
             System.out.println(enemy.getName() + " HP: " + enemy.getHealth() + " - Attack: " + enemy.getAttack() + " DMG");
             System.out.println("");
             System.out.println("1. Attack");
-            System.out.println("2. Do nothing");
+            System.out.println("2. Heavy Attack");
+            System.out.println("3. Do nothing");
             
             combatOption = requestValidIndex(sc, 1, 2, "Choose action: ");
             System.out.println("");
             
             if(combatOption == 1) {
                 player.attack(enemy);
+            }
+            
+            if(combatOption == 2) {
+                player.heavyAttack(enemy);
             }
             
             if (enemy.isAlive()) {
