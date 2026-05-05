@@ -1,11 +1,15 @@
 package model;
 
+import java.util.Random;
+
 public class Character {
     
     // has: name, health and attack
     private String name;
     private int health;
     private int attack;
+    
+    Random random = new Random();
     
     // Constructor
     public Character(String characterName, int characterHealth, int characterAttack) {
@@ -17,8 +21,9 @@ public class Character {
     // Main methods
     public void attack(Character target) {
         int damage = this.getAttack();
+        damage += random.nextInt(-2, 2);
         target.takeDamage(damage);
-        System.out.println(name + " hits " + target.getName() + " for " + attack + " damage!\n");
+        System.out.println(name + " hits " + target.getName() + " for " + damage + " damage!\n");
     }
     
     public void takeDamage(int damage) {
