@@ -18,7 +18,7 @@ public class NeuroDungeon {
         
         Scanner scanner = new Scanner(System.in);
         
-        startBattle(player, orcEnemy, scanner, combatOption);
+        startBattle(player, goblinEnemy, scanner, combatOption);
     }
     
     public static void startBattle(Player player, Enemy enemy, Scanner sc, int combatOption) {
@@ -47,6 +47,7 @@ public class NeuroDungeon {
             } else {
                 System.out.println("Exp actual: " + player.getPlayerExperience() + ", pero mataste al bicho por lo que se te suma " + enemy.getExpToGive());
                 player.gainExperience(enemy.getExpToGive(), enemy);
+                player.levelUp();
                 System.out.println("Quedas con " + player.getPlayerExperience() + " de exp gordo!");
             }
         }
