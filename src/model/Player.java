@@ -3,6 +3,7 @@ package model;
 import java.util.Random;
 
 public class Player extends Character{
+    int playerExperience = 0;
     
     Random random = new Random();
 
@@ -24,4 +25,15 @@ public class Player extends Character{
         }
     }
     
+    public void gainExperience(int expToGain, Character expSource) {
+        playerExperience += expToGain;
+    }
+
+    public int getPlayerExperience() {
+        return playerExperience;
+    }
+
+    public void setPlayerExperience(int playerExperience) {
+        this.playerExperience = playerExperience;
+    }
 }
