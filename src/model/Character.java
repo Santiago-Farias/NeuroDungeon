@@ -21,9 +21,15 @@ public class Character {
     // Main methods
     public void attack(Character target) {
         int damage = this.getAttack();
-        damage += random.nextInt(-2, 2);
-        target.takeDamage(damage);
-        System.out.println(name + " hits " + target.getName() + " for " + damage + " damage!\n");
+        int probCriticalDamage = random.nextInt(100);
+        if(probCriticalDamage < 20) {
+            damage = damage * 2;
+            target.takeDamage(damage);
+            System.out.println(name + " hits " + target.getName() + " for " + damage + " damage (CRITICAL)!\n");
+        } else {
+            target.takeDamage(damage);
+            System.out.println(name + " hits " + target.getName() + " for " + damage + " damage!\n");
+        }
     }
     
     public void takeDamage(int damage) {
