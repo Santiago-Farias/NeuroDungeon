@@ -18,6 +18,7 @@ public class Character {
     public void attack(Character target) {
         int damage = this.getAttack();
         target.takeDamage(damage);
+        System.out.println(name + " hits " + target.getName() + " for " + attack + " damage!\n");
     }
     
     public void takeDamage(int damage) {
@@ -26,7 +27,11 @@ public class Character {
         if (health < 0) {
             health = 0;
         }
-        System.out.println(name + " took " + damage + " damage!");
+    }
+    
+    public boolean isAlive() {
+        boolean characterAlive;
+        return characterAlive = getHealth() > 0;
     }
     
     // Getters
