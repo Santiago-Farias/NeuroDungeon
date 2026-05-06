@@ -12,7 +12,7 @@ public class NeuroDungeon {
         
         Random random = new Random();
         
-        Player player = new Player("Gordo", 55, 55, 5);
+        Player player = new Player("Gordo", 55, 55, 7);
         
         Scanner scanner = new Scanner(System.in);
         while(player.isAlive()) {
@@ -30,7 +30,8 @@ public class NeuroDungeon {
             System.out.println("");
             System.out.println("1. Attack");
             System.out.println("2. Heavy Attack");
-            System.out.println("3. Do nothing");
+            System.out.println("3. Heal");
+            System.out.println("4. Do nothing");
 
             combatOption = requestValidIndex(sc, 1, 3, "Choose action: ");
             System.out.println("");
@@ -41,6 +42,10 @@ public class NeuroDungeon {
 
             if (combatOption == 2) {
                 player.heavyAttack(enemy);
+            }
+            
+            if(combatOption == 3) {
+                player.gainHeal(15);
             }
 
             if (enemy.isAlive()) {
@@ -55,20 +60,20 @@ public class NeuroDungeon {
         if(enemy.isAlive() == false) {
             System.out.println(player.getName() + " killed a " + enemy.getName() + "!\n");
             player.gainExperience(enemy.getExpToGive());
-            player.levelUp(player);
+            player.levelUp();
         }
     }
     
     public static Enemy spawnEnemy(Player player, Random random) {
         switch (player.getLevel()) {
             case 1 -> {
-                Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 6, 25);
+                Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 6, 30);
                 return goblinEnemy;
             }
             case 2 -> {
                 int probEnemySpawn = random.nextInt(100);
-                if(probEnemySpawn < 70) {
-                    Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 7, 25);
+                if(probEnemySpawn < 60) {
+                    Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 7, 30);
                     return goblinEnemy;
                 } else {
                     Enemy orcEnemy = new Enemy("Orc", 60, 60, 8, 50);
@@ -84,12 +89,12 @@ public class NeuroDungeon {
                     Enemy orcEnemy = new Enemy("Orc", 60, 60, 8, 50);
                     return orcEnemy;
                 } else {
-                    Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 7, 25);
+                    Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 7, 30);
                     return goblinEnemy;
                 }
             }
             default -> {
-                Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 6, 25);
+                Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 6, 30);
                 return goblinEnemy;
             }
         }

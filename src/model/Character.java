@@ -48,6 +48,8 @@ public class Character {
         if (currentHealth > maxHealth) {
             currentHealth = maxHealth;
         }
+        
+        System.out.println(this.getName() + " heal (+" + heal + ")");
     }
     
     public boolean isAlive() {

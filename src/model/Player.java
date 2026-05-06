@@ -20,7 +20,7 @@ public class Player extends Character{
         if(probHeavyAttack < 25) {
             damage = damage * 3;
             target.takeDamage(damage);
-            System.out.println("You hit the heavy attack!\n");
+            System.out.println("You hit the HEAVY ATTACK! " + damage + " DAMAGE!\n");
         } else {
             System.out.println("You missed the heavy atack!");
         }
@@ -30,19 +30,21 @@ public class Player extends Character{
         playerExperience += expToGain;
     }
     
-    public void levelUp(Character player) {        
+    public void levelUp() {        
         if(playerExperience >= 100) {
+            System.out.println("LEVEL UP!");
             playerLevel = 2;
-            player.setMaxHealth(75);
-            player.setAttack(7);
-            player.gainHeal(15);
+            this.setMaxHealth(75);
+            this.setAttack(7);
+            this.gainHeal(15);
         } else if (playerExperience >= 250){
+            System.out.println("LEVEL UP!");
             playerLevel = 3;
-            player.setMaxHealth(95);
-            player.setAttack(10);
-            player.gainHeal(30);
+            this.setMaxHealth(95);
+            this.setAttack(10);
+            this.gainHeal(30);
         }
-        System.out.println(player.getName() + " XP: " + playerExperience + " - (LVL " + playerLevel + ")");
+        System.out.println(this.getName() + " XP: " + playerExperience + " - (LVL " + playerLevel + ")");
     }
 
     public int getExperience() {
