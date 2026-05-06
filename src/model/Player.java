@@ -8,8 +8,8 @@ public class Player extends Character{
     
     Random random = new Random();
 
-    public Player(String characterName, int characterHealth, int characterMaxHealh, int characterAttack) {
-        super(characterName, characterHealth, characterMaxHealh, characterAttack);
+    public Player(String characterName, int characterHealth, int characterMaxHealh, int characterHeal, int characterAttack) {
+        super(characterName, characterHealth, characterMaxHealh, characterHeal, characterAttack);
     }
     
     // can do attack and use hability (soon)
@@ -31,19 +31,20 @@ public class Player extends Character{
     }
     
     public void levelUp() {        
-        if(playerExperience >= 100) {
-            System.out.println("LEVEL UP!");
+        if(playerExperience >= 100 && playerExperience < 250) {
             playerLevel = 2;
             this.setMaxHealth(75);
             this.setAttack(7);
-            this.gainHeal(15);
+            this.setHeal(20);
+            this.gainHeal(this.getHeal());
         } else if (playerExperience >= 250){
-            System.out.println("LEVEL UP!");
             playerLevel = 3;
             this.setMaxHealth(95);
             this.setAttack(10);
-            this.gainHeal(30);
+            this.setHeal(25);
+            this.gainHeal(this.getHeal());
         }
+        System.out.println("LEVEL UP!");
         System.out.println(this.getName() + " XP: " + playerExperience + " - (LVL " + playerLevel + ")");
     }
 

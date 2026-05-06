@@ -8,16 +8,18 @@ public class Character {
     private String name;
     private int maxHealth;
     private int currentHealth;
+    private int heal;
     private int attack;
     
     Random random = new Random();
     
     // Constructor
-    public Character(String characterName, int characterHealth, int characterMaxHealth, int characterAttack) {
+    public Character(String characterName, int characterHealth, int characterMaxHealth, int characterHeal, int characterAttack) {
         this.name = characterName;
         this.currentHealth = characterHealth;
-        this.attack = characterAttack;
         this.maxHealth = characterMaxHealth;
+        this.heal = characterHeal;
+        this.attack = characterAttack;
     }
     
     // Main methods
@@ -43,7 +45,7 @@ public class Character {
     }
     
     public void gainHeal(int heal) {
-        currentHealth = this.currentHealth + heal;
+        currentHealth = this.currentHealth + this.heal;
         
         if (currentHealth > maxHealth) {
             currentHealth = maxHealth;
@@ -74,6 +76,10 @@ public class Character {
         return this.attack;
     }
     
+    public int getHeal() {
+        return this.heal;
+    }
+    
     // Setters
     public void setName(String newName) {
         this.name = newName;
@@ -85,6 +91,10 @@ public class Character {
     
     public void setCurrentHealh(int newCurrentHealth) {
         this.currentHealth = newCurrentHealth;
+    }
+    
+    public void setHeal(int newHeal) {
+        this.heal = newHeal;
     }
     
     public void setAttack(int newAttack) {

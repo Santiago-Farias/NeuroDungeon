@@ -12,7 +12,7 @@ public class NeuroDungeon {
         
         Random random = new Random();
         
-        Player player = new Player("Gordo", 55, 55, 7);
+        Player player = new Player("Gordo", 55, 55, 15, 5); // add then the energy
         
         Scanner scanner = new Scanner(System.in);
         while(player.isAlive()) {
@@ -33,7 +33,7 @@ public class NeuroDungeon {
             System.out.println("3. Heal");
             System.out.println("4. Do nothing");
 
-            combatOption = requestValidIndex(sc, 1, 3, "Choose action: ");
+            combatOption = requestValidIndex(sc, 1, 4, "Choose action: ");
             System.out.println("");
 
             if (combatOption == 1) {
@@ -67,34 +67,34 @@ public class NeuroDungeon {
     public static Enemy spawnEnemy(Player player, Random random) {
         switch (player.getLevel()) {
             case 1 -> {
-                Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 6, 30);
+                Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 0, 6, 25);
                 return goblinEnemy;
             }
             case 2 -> {
                 int probEnemySpawn = random.nextInt(100);
                 if(probEnemySpawn < 60) {
-                    Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 7, 30);
+                    Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 0, 6, 25);
                     return goblinEnemy;
                 } else {
-                    Enemy orcEnemy = new Enemy("Orc", 60, 60, 8, 50);
+                    Enemy orcEnemy = new Enemy("Orc", 60, 60, 0, 8, 50);
                     return orcEnemy;
                 }
             }
             case 3 -> {
                 int probEnemySpawn = random.nextInt(100);
-                if(probEnemySpawn < 10) {
-                    Enemy demonEnemy = new Enemy("Demon", 80, 80, 10, 100);
+                if(probEnemySpawn < 60) {
+                    Enemy demonEnemy = new Enemy("Demon", 85, 80, 0, 11, 100);
                     return demonEnemy;
-                } else if (probEnemySpawn < 80) {
-                    Enemy orcEnemy = new Enemy("Orc", 60, 60, 8, 50);
+                } else if (probEnemySpawn < 90) {
+                    Enemy orcEnemy = new Enemy("Orc", 60, 60, 0, 8, 50);
                     return orcEnemy;
                 } else {
-                    Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 7, 30);
+                    Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 0, 6, 25);
                     return goblinEnemy;
                 }
             }
             default -> {
-                Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 6, 30);
+                Enemy goblinEnemy = new Enemy("Goblin", 40, 40, 0, 6, 30);
                 return goblinEnemy;
             }
         }
