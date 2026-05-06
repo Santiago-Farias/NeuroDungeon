@@ -6,16 +6,18 @@ public class Character {
     
     // has: name, health and attack
     private String name;
-    private int health;
+    private int maxHealth;
+    private int currentHealth;
     private int attack;
     
     Random random = new Random();
     
     // Constructor
-    public Character(String characterName, int characterHealth, int characterAttack) {
+    public Character(String characterName, int characterHealth, int characterMaxHealth, int characterAttack) {
         this.name = characterName;
-        this.health = characterHealth;
+        this.currentHealth = characterHealth;
         this.attack = characterAttack;
+        this.maxHealth = characterMaxHealth;
     }
     
     // Main methods
@@ -33,16 +35,24 @@ public class Character {
     }
     
     public void takeDamage(int damage) {
-        health = this.health - damage;
+        currentHealth = this.currentHealth - damage;
         
-        if (health < 0) {
-            health = 0;
+        if (currentHealth < 0) {
+            currentHealth = 0;
+        }
+    }
+    
+    public void gainHeal(int heal) {
+        currentHealth = this.currentHealth + heal;
+        
+        if (currentHealth > maxHealth) {
+            currentHealth = maxHealth;
         }
     }
     
     public boolean isAlive() {
         boolean characterAlive;
-        return characterAlive = getHealth() > 0;
+        return characterAlive = getCurrentHealth() > 0;
     }
     
     // Getters
@@ -50,8 +60,12 @@ public class Character {
         return this.name;
     }
     
-    public int getHealth() {
-        return this.health;
+    public int getMaxHealth() {
+        return this.maxHealth;
+    }
+    
+    public int getCurrentHealth() {
+        return this.currentHealth;
     }
     
     public int getAttack() {
@@ -63,8 +77,12 @@ public class Character {
         this.name = newName;
     }
     
-    public void setHealh(int newHealth) {
-        this.health = newHealth;
+    public void setMaxHealth(int newMaxHealth) {
+        this.maxHealth = newMaxHealth;
+    }
+    
+    public void setCurrentHealh(int newCurrentHealth) {
+        this.currentHealth = newCurrentHealth;
     }
     
     public void setAttack(int newAttack) {
