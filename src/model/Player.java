@@ -42,14 +42,22 @@ public class Player extends Character{
             player.setAttack(10);
             player.gainHeal(30);
         }
-        System.out.println("Player level: " + playerLevel);
+        System.out.println(player.getName() + " XP: " + playerExperience + " - (LVL " + playerLevel + ")");
     }
 
-    public int getPlayerExperience() {
+    public int getExperience() {
         return playerExperience;
     }
 
-    public void setPlayerExperience(int playerExperience) {
+    public int getLevel() {
+        return playerLevel;
+    }
+    
+    public void setExperience(int playerExperience) {
         this.playerExperience = playerExperience;
+    }
+    
+    public void setLevel(int playerLevel) {
+        this.playerLevel = playerLevel;
     }
 }
