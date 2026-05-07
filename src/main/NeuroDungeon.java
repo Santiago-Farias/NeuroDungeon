@@ -12,7 +12,7 @@ public class NeuroDungeon {
         
         Random random = new Random();
         
-        Player player = new Player("Gordo", 55, 55, 15, 5); // add then the energy
+        Player player = new Player("Gordo", 55, 55, 15, 5, 50, 50); // add then the energy
         
         Scanner scanner = new Scanner(System.in);
         while(player.isAlive()) {
