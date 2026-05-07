@@ -12,7 +12,7 @@ public class NeuroDungeon {
         
         Random random = new Random();
         
-        Player player = new Player("Gordo", 55, 55, 15, 5, 50, 50); // add then the energy
+        Player player = new Player("Gordo", 55, 55, 15, 5, 60, 60);
         
         Scanner scanner = new Scanner(System.in);
         while(player.isAlive()) {
@@ -20,17 +20,16 @@ public class NeuroDungeon {
             startBattle(player, scanner, random, enemy);
         }
     }
-    // para generar enemigos de acuerdo al nivel de player, tal vez hacer metodo que revise nivel y genere segun
     public static void startBattle(Player player, Scanner sc, Random random, Enemy enemy) {
         int combatOption = 0;
         System.out.println("You encounter a " + enemy.getName() + "!\n");
         while(enemy.isAlive() && player.isAlive()) {
-            System.out.println(player.getName() + " HP: " + player.getCurrentHealth() + " - Attack: " + player.getAttack() + " DMG");
+            System.out.println(player.getName() + " HP: " + player.getCurrentHealth() + " - Attack: " + player.getAttack() + " DMG - " + player.getEnergyValues().get("currentEnergy") + "/" + player.getEnergyValues().get("maxEnergy") +" ENERGY");
             System.out.println(enemy.getName() + " HP: " + enemy.getCurrentHealth() + " - Attack: " + enemy.getAttack() + " DMG");
             System.out.println("");
-            System.out.println("1. Attack");
-            System.out.println("2. Heavy Attack");
-            System.out.println("3. Heal");
+            System.out.println("1. Attack (" + player.getEnergyValues().get("attack") + " energy)");
+            System.out.println("2. Heavy Attack (" + player.getEnergyValues().get("heavyAttack") + " energy)");
+            System.out.println("3. Heal (" + player.getEnergyValues().get("heal") + " energy)");
             System.out.println("4. Do nothing");
 
             combatOption = requestValidIndex(sc, 1, 4, "Choose action: ");
@@ -41,11 +40,19 @@ public class NeuroDungeon {
             }
 
             if (combatOption == 2) {
-                player.heavyAttack(enemy);
+                if(player.loseEnergy((int) player.getEnergyValues().get("heavyAttack"))) {
+                    player.heavyAttack(enemy);
+                } else {
+                    System.out.println("Not enough energy!");
+                }
             }
             
             if(combatOption == 3) {
-                player.gainHeal(15);
+                if(player.loseEnergy((int) player.getEnergyValues().get("heal"))) {
+                    player.gainHeal(15);
+                } else {
+                    System.out.println("Not enough energy!");
+                }
             }
 
             if (enemy.isAlive()) {
@@ -61,6 +68,7 @@ public class NeuroDungeon {
             System.out.println(player.getName() + " killed a " + enemy.getName() + "!\n");
             player.gainExperience(enemy.getExpToGive());
             player.levelUp();
+            player.gainEnergy();
         }
     }
     

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class Player extends Character{
@@ -42,6 +43,7 @@ public class Player extends Character{
             this.setHeal(20);
             this.gainHeal(this.getHeal());
             this.setPlayerMaxEnergy(60);
+            System.out.println("LEVEL UP!");
         } else if (playerExperience >= 250){
             playerLevel = 3;
             this.setMaxHealth(95);
@@ -49,9 +51,38 @@ public class Player extends Character{
             this.setHeal(25);
             this.gainHeal(this.getHeal());
             this.setPlayerMaxEnergy(70);
+            System.out.println("LEVEL UP!");
         }
-        System.out.println("LEVEL UP!");
         System.out.println(this.getName() + " XP: " + playerExperience + " - (LVL " + playerLevel + ")");
+    }
+    
+    public boolean loseEnergy(int energyUsed) {
+        boolean enoughEnergy = true;
+        
+        if(energyUsed > playerCurrentEnergy) {
+            enoughEnergy = false;
+        } else {
+            playerCurrentEnergy = this.playerCurrentEnergy - energyUsed;
+            
+        }
+        
+        return enoughEnergy;
+    }
+    
+    public void gainEnergy() {
+        playerCurrentEnergy = playerMaxEnergy;
+    }
+    
+    public HashMap getEnergyValues() {
+        HashMap<String, Integer> hm = new HashMap<>();
+        
+        hm.put("currentEnergy", this.getPlayerCurrentEnergy());
+        hm.put("maxEnergy", this.getPlayerMaxEnergy());
+        hm.put("attack", 0);
+        hm.put("heavyAttack", 20);
+        hm.put("heal", 15);
+        
+        return hm;
     }
 
     public int getExperience() {
@@ -63,7 +94,7 @@ public class Player extends Character{
     }
 
     public int getPlayerCurrentEnergy() {
-        return playerCurrentEnergy;
+        return this.playerCurrentEnergy;
     }
 
     public int getPlayerMaxEnergy() {

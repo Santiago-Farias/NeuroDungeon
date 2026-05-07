@@ -51,7 +51,7 @@ public class Character {
             currentHealth = maxHealth;
         }
         
-        System.out.println(this.getName() + " heal (+" + heal + ")");
+        System.out.println(this.getName() + " use a heal (+" + heal + " HP)");
     }
     
     public boolean isAlive() {
