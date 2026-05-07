@@ -8,6 +8,7 @@ A java RPG battle system playable via console.
 - Level system based on the player's accumulated experience
 - Enemy scaling by the level of player
 - Skills (attack, heavy attack, heal)
+- Energy system.
 
 ## Technologies
 
